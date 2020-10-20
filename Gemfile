@@ -32,7 +32,13 @@ gem 'bootsnap', '>= 1.4.2', require: false
 # Devise is a flexible authentication solution for Rails based on Warden.
 gem 'devise'
 
+# A simple HTTP and REST client for Ruby, inspired by the Sinatra's microframework style of specifying actions: get, put, post, delete.
+gem 'rest-client'
+
+gem 'airbnb_api'
+
 group :development, :test do
+  # Annotates Rails Models, routes, fixtures, and others based on the database schema (http://github.com/ctran/annotate_models)
   gem 'annotate'
   gem 'brakeman'
   gem 'bundler-audit'
