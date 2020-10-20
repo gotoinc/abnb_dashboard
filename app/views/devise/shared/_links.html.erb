@@ -1,0 +1,7 @@
+<%- if controller_name != 'sessions' %>
+  <%= link_to 'I already have a membership', new_session_path(resource_name), class: 'text-center' %>
+<% end %>
+
+<%- if devise_mapping.registerable? && controller_name != 'registrations' %>
+  <%= link_to 'Register a new membership', new_registration_path(resource_name), class: 'text-center' %>
+<% end %>
