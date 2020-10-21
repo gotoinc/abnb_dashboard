@@ -1,31 +1,53 @@
 module Abnb
   class ScrapingService
+    SELECTORS = {
+        abnb_id: '#site-content form > input[name=hosting_id]',
+        location: 'div:nth-child(1) > div > div > div > div > section > div > div > span:nth-child(5) > span > a',
+        title: 'div:nth-child(1) > div > div > div > div > section > div > div > h1',
+        root_element: '#site-content > div > div > div:nth-child(1)'
+    }
+    Result = Struct.new(:title, :location, :abnb_id, :url)
 
-    attr_reader :url
+    attr_reader :url,
+                :browser
 
-    Result = Struct.new(:title, :location)
+    def initialize(browser)
+      @browser = browser
+    end
 
     def call(url = nil)
       @url = url
+
+      perform_request
       fetch_data
+      browser.quit
     end
 
     private
 
-    def fetch_data
-      Result.new(parse[:title], parse[:location])
-    end
-
-    def parse
-      response_html = Nokogiri::HTML.parse(perform_request.body)
-      {
-          title: response_html.at_css('.title-selector')&.children.try(:[], 0)&.text&.strip,
-          location: response_html.at_css('.location-selector')&.children.try(:[], 0)&.text&.strip
-      }
-    end
-
     def perform_request
-      RestClient.get(url)
+      browser.get(url)
+    end
+
+    def fetch_data
+      Result.new(title, location, abnb_id, url)
+    end
+
+    # Getters
+    def root_element
+      browser.find_element(:css, SELECTORS[:root_element]) rescue nil
+    end
+
+    def title
+      root_element.find_element(:css, SELECTORS[:title])&.text rescue nil
+    end
+
+    def location
+     root_element.find_element(:css, SELECTORS[:location])&.text rescue nil
+    end
+
+    def abnb_id
+      browser.find_element(:css, SELECTORS[:abnb_id])&.attribute('value') rescue nil
     end
   end
 end

@@ -35,7 +35,9 @@ gem 'devise'
 # A simple HTTP and REST client for Ruby, inspired by the Sinatra's microframework style of specifying actions: get, put, post, delete.
 gem 'rest-client'
 
-gem 'airbnb_api'
+# Poltergeist is a driver for Capybara. It allows you to run your Capybara tests on a headless PhantomJS browser.
+gem 'selenium-webdriver'
+gem "chromedriver-helper"
 
 group :development, :test do
   # Annotates Rails Models, routes, fixtures, and others based on the database schema (http://github.com/ctran/annotate_models)
@@ -56,12 +58,12 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  # Adds support for Capybara system testing and selenium driver
+  gem 'capybara', '>= 2.15'
+
 end
 
 group :test do
-  # Adds support for Capybara system testing and selenium driver
-  gem 'capybara', '>= 2.15'
-  gem 'selenium-webdriver'
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
 end

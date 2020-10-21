@@ -10,10 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_20_161324) do
+ActiveRecord::Schema.define(version: 2020_10_21_122701) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "abnb_dates", force: :cascade do |t|
+    t.datetime "date"
+    t.boolean "available"
+    t.boolean "available_checkin"
+    t.boolean "bookable"
+    t.bigint "scanning_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["scanning_id"], name: "index_abnb_dates_on_scanning_id"
+  end
 
   create_table "scannings", force: :cascade do |t|
     t.string "title"

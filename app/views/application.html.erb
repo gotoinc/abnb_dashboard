@@ -79,11 +79,13 @@
           <h3 class="box-title">Paste a URL</h3>
         </div>
         <div class="box-body">
-          <div class="input-group">
-            <span class="input-group-addon">
-              <i class="fa fa-search"></i>
-            </span>
-            <input type="text" class="form-control" placeholder="https://www.airbnb.com/rooms/XXXXXXXX ">
+          <div class="col-sm-6">
+            <%= form_tag api_scannings_path, method: :post, class: 'input-group' do %>
+              <botton type="submit" class="input-group-addon">
+                <i class="fa fa-search"></i>
+              </botton>
+              <input type="text" name="url" class="form-control" placeholder="https://www.airbnb.com/rooms/XXXXXXXX ">
+            <% end %>
           </div>
         </div>
         <!-- /.box-body -->
@@ -102,91 +104,38 @@
               <th>City, Country</th>
               <th>30 day occupancy rate</th>
               <th>URL</th>
+              <th>ABNB id</th>
               <th>Action</th>
             </tr>
             </thead>
             <tbody>
-            <tr>
-              <td>Igigi 3br Flat in Brighton & Hove near Seafront</td>
-              <td>The City of Brighton and Hove, England, United Kingdom</td>
-              <td>30%</td>
-              <td>https://airbnb.com/h/stay-less-ordinary</td>
-              <td>
-                <a href="#">Delete</a>
-              </td>
-            </tr>
-            <tr>
-              <td>Igigi 3br Flat in Brighton & Hove near Seafront</td>
-              <td>The City of Brighton and Hove, England, United Kingdom</td>
-              <td>30%</td>
-              <td>https://airbnb.com/h/stay-less-ordinary</td>
-              <td>
-                <a href="#">Delete</a>
-              </td>
-            </tr>
-            <tr>
-              <td>Igigi 3br Flat in Brighton & Hove near Seafront</td>
-              <td>The City of Brighton and Hove, England, United Kingdom</td>
-              <td>30%</td>
-              <td>https://airbnb.com/h/stay-less-ordinary</td>
-              <td>
-                <a href="#">Delete</a>
-              </td>
-            </tr>
-            <tr>
-              <td>Igigi 3br Flat in Brighton & Hove near Seafront</td>
-              <td>The City of Brighton and Hove, England, United Kingdom</td>
-              <td>30%</td>
-              <td>https://airbnb.com/h/stay-less-ordinary</td>
-              <td>
-                <a href="#">Delete</a>
-              </td>
-            </tr>
-            <tr>
-              <td>Igigi 3br Flat in Brighton & Hove near Seafront</td>
-              <td>The City of Brighton and Hove, England, United Kingdom</td>
-              <td>30%</td>
-              <td>https://airbnb.com/h/stay-less-ordinary</td>
-              <td>
-                <a href="#">Delete</a>
-              </td>
-            </tr>
-            <tr>
-              <td>Igigi 3br Flat in Brighton & Hove near Seafront</td>
-              <td>The City of Brighton and Hove, England, United Kingdom</td>
-              <td>30%</td>
-              <td>https://airbnb.com/h/stay-less-ordinary</td>
-              <td>
-                <a href="#">Delete</a>
-              </td>
-            </tr>
-            <tr>
-              <td>Igigi 3br Flat in Brighton & Hove near Seafront</td>
-              <td>The City of Brighton and Hove, England, United Kingdom</td>
-              <td>30%</td>
-              <td>https://airbnb.com/h/stay-less-ordinary</td>
-              <td>
-                <a href="#">Delete</a>
-              </td>
-            </tr>
-            <tr>
-              <td>Igigi 3br Flat in Brighton & Hove near Seafront</td>
-              <td>The City of Brighton and Hove, England, United Kingdom</td>
-              <td>30%</td>
-              <td>https://airbnb.com/h/stay-less-ordinary</td>
-              <td>
-                <a href="#">Delete</a>
-              </td>
-            </tr>
-            <tr>
-              <td>Igigi 3br Flat in Brighton & Hove near Seafront</td>
-              <td>The City of Brighton and Hove, England, United Kingdom</td>
-              <td>30%</td>
-              <td>https://airbnb.com/h/stay-less-ordinary</td>
-              <td>
-                <a href="#">Delete</a>
-              </td>
-            </tr>
+              <% if @scannings.blank? %>
+                <tr>
+                  <td colspan="6">
+                    No scanning found ...
+                  </td>
+                </tr>
+              <% end %>
+              <% @scannings.each do |item| %>
+                <tr>
+                  <td>
+                    <%= item.title %>
+                  </td>
+                  <td>
+                    <%= item.location %>
+                  </td>
+                  <td><%= item.occupancy_rate %>%</td>
+                  <td>
+                    <%= item.url %>
+                  </td>
+                  <td>
+                    <%= item.abnb_id %>
+                  </td>
+                  <td>
+                    <a href="#">Delete</a>
+                  </td>
+                </tr>
+              <% end %>
             </tbody>
             <tfoot>
             <tr>
@@ -194,6 +143,7 @@
               <th>City, Country</th>
               <th>30 day occupancy rate</th>
               <th>URL</th>
+              <th>ABNB id</th>
               <th>Action</th>
             </tr>
             </tfoot>

@@ -15,5 +15,9 @@ Rails.application.routes.draw do
     end
   end
 
+  namespace :api do
+    resource :scannings, only: %i[create]
+  end
+
   match "*path", to: "dashboard/application#index", format: false, via: :get
 end
