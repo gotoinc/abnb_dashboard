@@ -6,6 +6,7 @@ module Api
     def create
       scanner.call(scanning_url).then do |result|
         scanner_updater(result).call
+        browser.quit
       end
 
       redirect_to dashboard_path
@@ -18,11 +19,11 @@ module Api
     end
 
     def browser
-      Browser.new
+      @browser ||= Browser.new.call
     end
 
     def scanner
-      Abnb::ScrapingService.new(browser.call)
+      Abnb::ScrapingService.new(browser)
     end
 
     def scanner_updater(result)

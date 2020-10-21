@@ -20,7 +20,6 @@ module Abnb
 
       perform_request
       fetch_data
-      browser.quit
     end
 
     private
