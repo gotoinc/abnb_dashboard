@@ -5,7 +5,7 @@ module Dashboard
     before_action :authenticate_user!
 
     def index
-      @scannings = current_user.scannings
+      @scannings = current_user.scannings.order('updated_at DESC')
 
       render template: 'application'
     end

@@ -1,10 +1,10 @@
 module Abnb
   class ScrapingService
     SELECTORS = {
-        abnb_id: '#site-content form > input[name=hosting_id]',
-        location: 'div:nth-child(1) > div > div > div > div > section > div > div > span:nth-child(5) > span > a',
-        title: 'div:nth-child(1) > div > div > div > div > section > div > div > h1',
-        root_element: '#site-content > div > div > div:nth-child(1)'
+      abnb_id: '#site-content form > input[name=hosting_id]',
+      location: 'div:nth-child(1) > div > div > div > div > section > div > div a[rel="noopener noreferrer"]',
+      title: 'div:nth-child(1) > div > div > div > div > section > div > div > h1',
+      root_element: '#site-content > div > div > div:nth-child(1)'
     }
     Result = Struct.new(:title, :location, :abnb_id, :url)
 

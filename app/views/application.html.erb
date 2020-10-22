@@ -73,7 +73,11 @@
 
     <!-- Main content -->
     <section class="content">
-
+      <% flash.each do |type, msg| %>
+        <div class="alert alert-error">
+          <%= msg.first %>
+        </div>
+      <% end %>
       <div class="box box-info">
         <div class="box-header with-border">
           <h3 class="box-title">Paste a URL</h3>
@@ -105,7 +109,6 @@
               <th>30 day occupancy rate</th>
               <th>URL</th>
               <th>ABNB id</th>
-              <th>Action</th>
             </tr>
             </thead>
             <tbody>
@@ -131,9 +134,6 @@
                   <td>
                     <%= item.abnb_id %>
                   </td>
-                  <td>
-                    <a href="#">Delete</a>
-                  </td>
                 </tr>
               <% end %>
             </tbody>
@@ -144,7 +144,6 @@
               <th>30 day occupancy rate</th>
               <th>URL</th>
               <th>ABNB id</th>
-              <th>Action</th>
             </tr>
             </tfoot>
           </table>

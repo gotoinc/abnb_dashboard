@@ -6,6 +6,7 @@ class Browser
 
   def initialize
     # Initialize a default driver options
+    Selenium::WebDriver::Wait.new(timeout: 10, interval: 1)
     @options = Selenium::WebDriver::Chrome::Options.new(
         args: %w[no-sandbox disable-dev-shm-usage disable-popup-blocking headless disable-gpu window-size=1920,1080 --enable-features=NetworkService,NetworkServiceInProcess --disable-features=VizDisplayCompositor],
         log_level: :error

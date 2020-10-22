@@ -23,6 +23,7 @@ class Scanning < ApplicationRecord
   belongs_to :user, inverse_of: :scannings
 
   # validators
+  validates_with Validators::AbnbUrlValidator
   validates_presence_of :user
 
   # instance_methods
