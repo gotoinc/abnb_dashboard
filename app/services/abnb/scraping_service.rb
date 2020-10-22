@@ -42,7 +42,7 @@ module Abnb
     end
 
     def location
-     root_element.find_element(:css, SELECTORS[:location])&.text rescue nil
+      root_element.find_element(:css, SELECTORS[:location])&.text rescue nil
     end
 
     def abnb_id

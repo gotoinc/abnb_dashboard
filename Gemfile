@@ -32,8 +32,8 @@ gem 'bootsnap', '>= 1.4.2', require: false
 # Devise is a flexible authentication solution for Rails based on Warden.
 gem 'devise'
 
-# A simple HTTP and REST client for Ruby, inspired by the Sinatra's microframework style of specifying actions: get, put, post, delete.
-gem 'rest-client'
+# Faraday is an HTTP client library that provides a common interface over many adapters (such as Net::HTTP) and embraces the concept of Rack middleware when processing the request/response cycle.
+gem 'faraday'
 
 # Poltergeist is a driver for Capybara. It allows you to run your Capybara tests on a headless PhantomJS browser.
 gem 'selenium-webdriver'

@@ -22,7 +22,7 @@ module Abnb
     private
 
     def perform_request
-      RestClient.get(url, headers)
+      Faraday.get(url, {}, headers)
     end
 
     def headers
